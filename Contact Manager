@@ -1,0 +1,53 @@
+import os
+listu = {}
+
+def add():  
+  name = input("Name> ").strip().capitalize()
+  gender = input("Gender (M/F)> ").strip().capitalize()
+  status = input("Status> ").strip().capitalize()
+  listu[name] = {"Gender": gender, "Status": status}
+  
+
+def view():
+  for key, value in listu.items():
+    print(key, end=": ")
+    for subkey, subvalue in value.items():
+      print(subvalue, end=" ")
+      
+    print()
+
+def edit():
+  edit_what = input("Edit whose information? ").strip().capitalize()
+  for key, value in listu.items():
+    if edit_what == key:
+      edit_what_info = input("What info do you want to edit?").strip().capitalize()
+      for subkey, subvalue in value.items():
+        if edit_what_info == subkey:
+          listu[edit_what][edit_what_info] = input("Edit it to what").strip().capitalize()
+
+def remove():
+  remove_what = input("Who do you want to remove?").strip().capitalize()
+  if remove_what in listu:
+    del listu[remove_what]
+      
+
+while True:
+  Menu = input("Add, view, edit or remove?\n").strip().lower()
+  if Menu == "add":
+    add()
+    os.system("clear")
+    
+  elif Menu == "view":
+    os.system("clear")
+    view()
+    print()
+  elif Menu == "edit":
+    os.system("clear")
+    view()
+    print()
+    edit()
+  elif Menu == "remove":
+    os.system("clear")
+    view()
+    print()
+    remove()
